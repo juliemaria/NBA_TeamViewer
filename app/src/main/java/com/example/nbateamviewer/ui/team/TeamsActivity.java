@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import com.example.nbateamviewer.databinding.TeamsActivityBinding;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.network.viewmodels.TeamsViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamsActivity extends AppCompatActivity {
@@ -21,6 +24,8 @@ public class TeamsActivity extends AppCompatActivity {
     RecyclerView teamsRecyclerView;
     TeamsActivityBinding teamsActivityBinding;
     TeamsViewModel teamsViewModel;
+    TeamsListAdapter teamsAdapter;
+    ArrayList<Teams> teamsArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +40,23 @@ public class TeamsActivity extends AppCompatActivity {
         teamsViewModel.getTeamsRepository().observe(this, new Observer<List<Teams>>() {
                     @Override
                     public void onChanged(List<Teams> teamsResponse) {
-                        Log.e("Response: ",teamsResponse.get(0).toString());
+                        teamsArrayList.addAll(teamsResponse);
+                        if (teamsResponse != null)
+                        setupRecyclerView();
                     }
                 }
         );
-
-        setupRecyclerView();
     }
 
     private void setupRecyclerView() {
-
+    if (teamsAdapter == null) {
+        teamsAdapter = new TeamsListAdapter(this, teamsArrayList);
+        teamsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        teamsRecyclerView.setAdapter(teamsAdapter);
+        teamsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    } else {
+        teamsAdapter.notifyDataSetChanged();
+    }
     }
 
 }
