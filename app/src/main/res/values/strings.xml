@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">NBA Team Viewer</string>
     <string name="nba_team_viewer">NBA Team Viewer</string>
+    <string name="space">\u0020</string>
+    <string name="w_string">W</string>
+    <string name="l_string">L</string>
+    <string name="sort_by_alphabetical_order_asc">Sort teams alphabetically ascending</string>
+    <string name="sort_by_alphabetical_order_desc">Sort teams alphabetically descending</string>
+    <string name="sort_by_wins_asc">Sort teams by wins ascending</string>
+    <string name="sort_by_wins_desc">Sort teams by wins descending</string>
+    <string name="sort_by_losses_asc">Sort teams by losses ascending</string>
+    <string name="sort_by_losses_desc">Sort teams by losses descending</string>
 </resources>
