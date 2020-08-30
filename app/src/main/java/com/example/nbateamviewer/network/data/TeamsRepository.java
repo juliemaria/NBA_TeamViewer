@@ -12,13 +12,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TeamsRepository {
-    private static TeamsRepository newsRepository;
+    private static TeamsRepository teamsRepository;
+    final MutableLiveData<List<Teams>> teamsList = new MutableLiveData<>();
 
         public static TeamsRepository getInstance(){
-            if (newsRepository == null){
-                newsRepository = new TeamsRepository();
+            if (teamsRepository == null){
+                teamsRepository = new TeamsRepository();
             }
-            return newsRepository;
+            return teamsRepository;
         }
 
         private ApiServiceInterface apiServiceInterface;
@@ -28,7 +29,7 @@ public class TeamsRepository {
         }
 
         public MutableLiveData<List<Teams>> getAllTeams(){
-            final MutableLiveData<List<Teams>> teamsList = new MutableLiveData<>();
+
             apiServiceInterface.getTeamsList().enqueue(new Callback<List<Teams>>() {
                 @Override
                 public void onResponse(Call<List<Teams>> call,
@@ -45,4 +46,24 @@ public class TeamsRepository {
             });
             return teamsList;
         }
+
+    public MutableLiveData<Teams> getTeamDetail(int teamId){
+        final MutableLiveData<Teams> teamsDetail = new MutableLiveData<>();
+
+        /*apiServiceInterface.getTeamsList().enqueue(new Callback<List<Teams>>() {
+            @Override
+            public void onResponse(Call<List<Teams>> call,
+                                   Response<List<Teams>> response) {
+                if (response.isSuccessful()){
+                    teamsList.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Teams>> call, Throwable t) {
+                teamsList.setValue(null);
+            }
+        });*/
+        return teamsDetail;
+    }
 }

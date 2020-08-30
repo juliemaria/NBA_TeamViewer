@@ -60,7 +60,9 @@ public class TeamsListAdapter extends RecyclerView.Adapter<TeamsListAdapter.Team
 
     @Override
     public void onTeamItemClicked(Teams teams) {
-        Toast.makeText(NbaApplication.getAppContext(),"Selected: "+teams.getFull_name(),Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(context, TeamDetailActivity.class);
+        intent.putExtra("TeamDetail", teams);
+        context.startActivity(intent);
     }
 
     class TeamsListViewViewHolder extends RecyclerView.ViewHolder {

@@ -1,6 +1,5 @@
 package com.example.nbateamviewer.network.viewmodels;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 

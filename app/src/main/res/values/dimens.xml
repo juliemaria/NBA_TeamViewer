@@ -3,8 +3,9 @@
     <dimen name="textsize_xxx">32sp</dimen>
     <dimen name="textsize_xx">16sp</dimen>
     <dimen name="textsize_x">8sp</dimen>
-    <dimen name="margin_small">4dp</dimen>
-    <dimen name="margin_small_x">1dp</dimen>
+    <dimen name="margin_small_x">7dp</dimen>
+    <dimen name="margin_small_xx">4dp</dimen>
+    <dimen name="margin_small_xxx">1dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="minimum_width">40dp</dimen>
 </resources>

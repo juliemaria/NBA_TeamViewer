@@ -5,12 +5,9 @@
     >
 
     <data>
-        <variable
-            name="viewmodel"
-            type="com.example.nbateamviewer.network.viewmodels.TeamsViewModel"/>
-        <variable
-            name="team"
-            type="com.example.nbateamviewer.network.model.Teams"/>
+         <variable
+            name="player"
+            type="com.example.nbateamviewer.network.model.Players"/>
 
     </data>
 <androidx.cardview.widget.CardView
@@ -18,56 +15,60 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_small_xxx"
     app:cardElevation="1dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackground"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->viewmodel.teamItemClicked(team)}"
         android:layout_margin="@dimen/margin_small_xx">
-
 
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
-            android:text="@{team.full_name}"
-            android:textColor="@color/colorBlue"
+            android:text="@{player.first_name+' '+player.last_name}"
+            android:textColor="@color/colorBlack"
             android:textSize="@dimen/textsize_xx"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/wins"
+            app:layout_constraintEnd_toStartOf="@+id/position"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/wins"
+            android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
-            android:background="@android:color/holo_green_dark"
             android:gravity="center"
             android:minWidth="@dimen/minimum_width"
-            android:textColor="@color/colorWhite"
-            android:text="@{'W'+Integer.toString(team.wins)}"
+            android:textColor="@color/colorBlue"
+            android:text="@{player.position}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/losses"
+            app:layout_constraintEnd_toStartOf="@+id/line"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/losses"
+            android:id="@+id/line"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_medium"
+            android:gravity="center"
+            android:minWidth="@dimen/minimum_width"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/number"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
-            android:background="@color/colorRed"
             android:gravity="center"
             android:minWidth="@dimen/minimum_width"
-            android:textColor="@color/colorWhite"
-            android:text="@{'L'+Integer.toString(team.losses)}"
+            android:textColor="@color/colorBlack"
+            android:text="@{Integer.toString(player.number)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
