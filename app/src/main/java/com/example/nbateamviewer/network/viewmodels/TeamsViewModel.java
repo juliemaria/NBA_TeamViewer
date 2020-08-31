@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.nbateamviewer.Constants;
 import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.data.TeamsRepository;
+import com.example.nbateamviewer.network.model.TeamRepoModel;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
 
@@ -16,15 +17,15 @@ import java.util.Comparator;
 
 public class TeamsViewModel extends ViewModel {
 
-    private MutableLiveData<ArrayList<Teams>> teamsMutableLiveData;
+    private MutableLiveData<TeamRepoModel> teamsMutableLiveData;
     private TeamsRepository teamsRepository;
     private TeamDetailNavigator teamDetailNavigator;
 
-    public LiveData<ArrayList<Teams>> getTeamsMutableLiveData() {
+    public LiveData<TeamRepoModel> getTeamsMutableLiveData() {
         return teamsMutableLiveData;
     }
 
-    public void setTeamsMutableLiveData(MutableLiveData<ArrayList<Teams>> teamsMutableLiveData) {
+    public void setTeamsMutableLiveData(MutableLiveData<TeamRepoModel> teamsMutableLiveData) {
         this.teamsMutableLiveData = teamsMutableLiveData;
     }
 
@@ -45,7 +46,7 @@ public class TeamsViewModel extends ViewModel {
     }
 
     public void sortTeamList(String sortType) {
-        Collections.sort(teamsMutableLiveData.getValue(), new Comparator<Teams>() {
+        Collections.sort(teamsMutableLiveData.getValue().getTeamsArrayList(), new Comparator<Teams>() {
             public int compare(Teams obj1, Teams obj2) {
                 if (sortType.equalsIgnoreCase("TeamNameAsc")) {
                     return obj1.getFull_name().compareToIgnoreCase(obj2.getFull_name());

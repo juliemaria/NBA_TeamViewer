@@ -28,7 +28,7 @@ public class TeamsListAdapter extends RecyclerView.Adapter<TeamsListAdapter.Team
     public TeamsListAdapter(Activity context,TeamsViewModel tViewModel) {
         this.context = context;
         this.teamsViewModel = tViewModel;
-        this.teamsArrayList = teamsViewModel.getTeamsMutableLiveData().getValue();
+        this.teamsArrayList = teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList();
     }
 
 
