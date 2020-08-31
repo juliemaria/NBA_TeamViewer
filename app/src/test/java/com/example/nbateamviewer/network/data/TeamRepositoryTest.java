@@ -3,17 +3,17 @@ package com.example.nbateamviewer.network.data;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.model.Players;
 import com.example.nbateamviewer.network.model.Teams;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.*;
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TeamRepositoryTest {
 
@@ -21,7 +21,7 @@ public class TeamRepositoryTest {
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     @Test
-    public void testTeamsResponse() {
+    public void testSuccessfulTeamsResponse() {
         ArrayList<Teams> mockTeams = fetchTeams();
 
         MutableLiveData<ArrayList<Teams>> mockInput = new MutableLiveData<>();
@@ -30,6 +30,19 @@ public class TeamRepositoryTest {
         TeamsRepository repo = new MockTeamRepository(mockInput);
         MutableLiveData<ArrayList<Teams>> mockResult = repo.getAllTeams();
         assertEquals(mockInput, mockResult);
+    }
+
+    @Test
+    public void testFailedTeamsResponse() {
+        ArrayList<Teams> mockTeams = fetchTeams();
+
+        MutableLiveData<ArrayList<Teams>> mockInput = new MutableLiveData<>();
+        mockInput.setValue(mockTeams);
+
+        TeamsRepository repo = new FailedMockTeamRepository();
+        MutableLiveData<ArrayList<Teams>> mockResult = repo.getAllTeams();
+        assertNotEquals(mockInput, mockResult);
+        assertEquals(null, mockResult);
     }
 
     @NotNull
@@ -55,6 +68,18 @@ public class TeamRepositoryTest {
         @Override
         public MutableLiveData<ArrayList<Teams>> getAllTeams() {
             return teamData;
+        }
+    }
+
+    class FailedMockTeamRepository extends TeamsRepository {
+
+        public FailedMockTeamRepository() {
+
+        }
+
+        @Override
+        public MutableLiveData<ArrayList<Teams>> getAllTeams() {
+            return null;
         }
     }
 }

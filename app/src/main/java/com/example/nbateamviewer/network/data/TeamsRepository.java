@@ -4,12 +4,10 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nbateamviewer.Constants;
 import com.example.nbateamviewer.network.ApiServiceInterface;
 import com.example.nbateamviewer.network.model.Teams;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

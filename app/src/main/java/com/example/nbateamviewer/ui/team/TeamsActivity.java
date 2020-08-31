@@ -29,7 +29,7 @@ public class TeamsActivity extends AppCompatActivity {
         teamsActivityBinding = DataBindingUtil.setContentView(this, R.layout.teams_activity);
         teamsViewModel = new ViewModelProvider(this).get(TeamsViewModel.class);
         teamsViewModel.init();
-        teamsViewModel.getTeamsRepository().observe(this, new Observer<List<Teams>>() {
+        teamsViewModel.getMutableLiveData().observe(this, new Observer<List<Teams>>() {
                     @Override
                     public void onChanged(List<Teams> teamsResponse) {
                         if (teamsResponse != null)
@@ -41,7 +41,7 @@ public class TeamsActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
        if (teamsAdapter == null) {
-        teamsAdapter = new TeamsListAdapter(this, teamsViewModel.getTeamsRepository().getValue(), teamsViewModel);
+        teamsAdapter = new TeamsListAdapter(this, teamsViewModel);
         teamsActivityBinding.setTeamsAdapter(teamsAdapter);
     } else {
         teamsAdapter.notifyDataSetChanged();
@@ -58,22 +58,28 @@ public class TeamsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sort_by_alphabetical_order_asc:
-                teamsViewModel.sortTeamList(getString(R.string.team_name_asc));
+                teamsViewModel.sortTeamList(getString(R.string.team_name_asc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             case R.id.sort_by_alphabetical_order_desc:
-                teamsViewModel.sortTeamList(getString(R.string.team_name_desc));
+                teamsViewModel.sortTeamList(getString(R.string.team_name_desc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             case R.id.sort_by_losses_asc:
-                teamsViewModel.sortTeamList(getString(R.string.loss_asc));
+                teamsViewModel.sortTeamList(getString(R.string.loss_asc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             case R.id.sort_by_losses_desc:
-                teamsViewModel.sortTeamList(getString(R.string.loss_desc));
+                teamsViewModel.sortTeamList(getString(R.string.loss_desc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             case R.id.sort_by_wins_asc:
-                teamsViewModel.sortTeamList(getString(R.string.win_asc));
+                teamsViewModel.sortTeamList(getString(R.string.win_asc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             case R.id.sort_by_wins_desc:
-                teamsViewModel.sortTeamList(getString(R.string.win_desc));
+                teamsViewModel.sortTeamList(getString(R.string.win_desc), teamsAdapter);
+                teamsAdapter.notifyDataSetChanged();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
