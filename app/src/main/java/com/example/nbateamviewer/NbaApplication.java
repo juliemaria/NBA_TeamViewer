@@ -8,7 +8,7 @@ public class NbaApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
-        NbaApplication.context = getApplicationContext();
+        this.context = getApplicationContext();
     }
 
     public static Context getAppContext() {

@@ -10,4 +10,11 @@
     <string name="sort_by_wins_desc">Sort teams by wins descending</string>
     <string name="sort_by_losses_asc">Sort teams by losses ascending</string>
     <string name="sort_by_losses_desc">Sort teams by losses descending</string>
+    <!--Sort type Identifiers-->
+    <string name="team_name_asc" translatable="false">TeamNameAsc</string>
+    <string name="team_name_desc" translatable="false">TeamNameDesc</string>
+    <string name="loss_asc" translatable="false">LossAsc</string>
+    <string name="loss_desc" translatable="false">LossDesc</string>
+    <string name="win_asc" translatable="false">WinsAsc</string>
+    <string name="win_desc" translatable="false">WinsDesc</string>
 </resources>

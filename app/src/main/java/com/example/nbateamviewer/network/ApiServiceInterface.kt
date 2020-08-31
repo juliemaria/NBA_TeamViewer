@@ -20,16 +20,16 @@ interface ApiServiceInterface {
 
 
     companion object Factory {
-        fun create(): ApiServiceInterface {
+        fun create(baseUrl : String, context: Context): ApiServiceInterface {
 
             val cacheSize = (5 * 1024 * 1024).toLong()
-            val myCache = Cache(NbaApplication.getAppContext().cacheDir, cacheSize)
+            val myCache = Cache(context.cacheDir, cacheSize)
 
             val okHttpClient = OkHttpClient.Builder()
                     .cache(myCache)
                     .addInterceptor { chain ->
                         var request = chain.request()
-                        request = if (NetworkUtils.hasNetwork(NbaApplication.getAppContext())!!)
+                        request = if (NetworkUtils.hasNetwork(context)!!)
                             request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
                         else
                             request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build()
@@ -40,7 +40,8 @@ interface ApiServiceInterface {
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(Constants.BASE_URL)
+                    .client(okHttpClient)
+                    .baseUrl(baseUrl)
                     .build()
 
             return retrofit.create(ApiServiceInterface::class.java)

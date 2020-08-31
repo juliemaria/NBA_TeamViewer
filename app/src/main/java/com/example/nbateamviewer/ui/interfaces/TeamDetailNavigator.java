@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.ui.team;
+package com.example.nbateamviewer.ui.interfaces;
 
 import com.example.nbateamviewer.network.model.Teams;
 

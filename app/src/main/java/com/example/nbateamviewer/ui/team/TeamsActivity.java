@@ -58,22 +58,22 @@ public class TeamsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sort_by_alphabetical_order_asc:
-                teamsViewModel.sortTeamList("TeamNameAsc", teamsAdapter);
+                teamsViewModel.sortTeamList(getString(R.string.team_name_asc));
                 return true;
             case R.id.sort_by_alphabetical_order_desc:
-                teamsViewModel.sortTeamList("TeamNameDesc", teamsAdapter);
+                teamsViewModel.sortTeamList(getString(R.string.team_name_desc));
                 return true;
-             case R.id.sort_by_losses_asc:
-                 teamsViewModel.sortTeamList("LossAsc", teamsAdapter);
+            case R.id.sort_by_losses_asc:
+                teamsViewModel.sortTeamList(getString(R.string.loss_asc));
                 return true;
             case R.id.sort_by_losses_desc:
-                teamsViewModel.sortTeamList("LossDesc", teamsAdapter);
+                teamsViewModel.sortTeamList(getString(R.string.loss_desc));
                 return true;
-             case R.id.sort_by_wins_asc:
-                 teamsViewModel.sortTeamList("WinsAsc", teamsAdapter);
+            case R.id.sort_by_wins_asc:
+                teamsViewModel.sortTeamList(getString(R.string.win_asc));
                 return true;
             case R.id.sort_by_wins_desc:
-                teamsViewModel.sortTeamList("WinsDesc", teamsAdapter);
+                teamsViewModel.sortTeamList(getString(R.string.win_desc));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
