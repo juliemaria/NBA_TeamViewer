@@ -15,13 +15,9 @@ import com.example.nbateamviewer.databinding.TeamsListItemBinding;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.network.viewmodels.TeamsViewModel;
 import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
-import com.example.nbateamviewer.ui.interfaces.TeamListModifications;
 import com.example.nbateamviewer.ui.teamdetail.TeamDetailActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Objects;
 
 public class TeamsListAdapter extends RecyclerView.Adapter<TeamsListAdapter.TeamsListViewViewHolder>  implements TeamDetailNavigator {
 
@@ -32,7 +28,7 @@ public class TeamsListAdapter extends RecyclerView.Adapter<TeamsListAdapter.Team
     public TeamsListAdapter(Activity context,TeamsViewModel tViewModel) {
         this.context = context;
         this.teamsViewModel = tViewModel;
-        this.teamsArrayList = teamsViewModel.getMutableLiveData().getValue();
+        this.teamsArrayList = teamsViewModel.getTeamsMutableLiveData().getValue();
     }
 
 

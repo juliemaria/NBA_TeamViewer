@@ -9,62 +9,44 @@ import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.data.TeamsRepository;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
-import com.example.nbateamviewer.ui.interfaces.TeamListModifications;
-import com.example.nbateamviewer.ui.team.TeamsListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class TeamsViewModel extends ViewModel{
+public class TeamsViewModel extends ViewModel {
 
-
-    private MutableLiveData<ArrayList<Teams>> mutableLiveData;
-
-    public TeamsRepository getTeamsRepository() {
-        return teamsRepository;
-    }
-
-    public void setTeamsRepository(TeamsRepository teamsRepository) {
-        this.teamsRepository = teamsRepository;
-    }
-
+    private MutableLiveData<ArrayList<Teams>> teamsMutableLiveData;
     private TeamsRepository teamsRepository;
     private TeamDetailNavigator teamDetailNavigator;
-    private TeamListModifications teamListModifications;
 
-    public LiveData<ArrayList<Teams>> getMutableLiveData() {
-        return mutableLiveData;
+    public LiveData<ArrayList<Teams>> getTeamsMutableLiveData() {
+        return teamsMutableLiveData;
     }
 
-    public void setMutableLiveData(MutableLiveData<ArrayList<Teams>> mutableLiveData) {
-        this.mutableLiveData = mutableLiveData;
+    public void setTeamsMutableLiveData(MutableLiveData<ArrayList<Teams>> teamsMutableLiveData) {
+        this.teamsMutableLiveData = teamsMutableLiveData;
     }
 
    public void init(){
-        if (mutableLiveData != null){
+        if (teamsMutableLiveData != null){
             return;
         }
         teamsRepository = TeamsRepository.getInstance(Constants.BASE_URL, NbaApplication.getAppContext());
-        mutableLiveData = teamsRepository.getAllTeams();
+        teamsMutableLiveData = teamsRepository.getAllTeams();
     }
 
     public void setTeamDetailNavigator(TeamDetailNavigator teamDetailNavigator) {
         this.teamDetailNavigator = teamDetailNavigator;
     }
 
-    public void setTeamListModifications(TeamListModifications teamListModifications) {
-        this.teamListModifications = teamListModifications;
-    }
-
     public void teamItemClicked(Teams teams){
         teamDetailNavigator.onTeamItemClicked(teams);
     }
 
-    public void sortTeamList(String sortType, TeamsListAdapter teamsAdapter) {
-        Collections.sort(mutableLiveData.getValue(), new Comparator<Teams>() {
+    public void sortTeamList(String sortType) {
+        Collections.sort(teamsMutableLiveData.getValue(), new Comparator<Teams>() {
             public int compare(Teams obj1, Teams obj2) {
-                //Ascending order of name
                 if (sortType.equalsIgnoreCase("TeamNameAsc")) {
                     return obj1.getFull_name().compareToIgnoreCase(obj2.getFull_name());
                 } else if (sortType.equalsIgnoreCase("WinsDesc")) {
