@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.nbateamviewer.Constants;
 import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.data.TeamsRepository;
-import com.example.nbateamviewer.network.model.TeamRepoModel;
+import com.example.nbateamviewer.network.model.TeamRepositoryModel;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
 
@@ -17,15 +17,15 @@ import java.util.Comparator;
 
 public class TeamsViewModel extends ViewModel {
 
-    private MutableLiveData<TeamRepoModel> teamsMutableLiveData;
+    private MutableLiveData<TeamRepositoryModel> teamsMutableLiveData;
     private TeamsRepository teamsRepository;
     private TeamDetailNavigator teamDetailNavigator;
 
-    public LiveData<TeamRepoModel> getTeamsMutableLiveData() {
+    public LiveData<TeamRepositoryModel> getTeamsMutableLiveData() {
         return teamsMutableLiveData;
     }
 
-    public void setTeamsMutableLiveData(MutableLiveData<TeamRepoModel> teamsMutableLiveData) {
+    public void setTeamsMutableLiveData(MutableLiveData<TeamRepositoryModel> teamsMutableLiveData) {
         this.teamsMutableLiveData = teamsMutableLiveData;
     }
 

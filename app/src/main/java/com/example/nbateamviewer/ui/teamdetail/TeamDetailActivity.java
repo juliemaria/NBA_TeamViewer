@@ -1,7 +1,9 @@
 package com.example.nbateamviewer.ui.teamdetail;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,6 +20,7 @@ public class TeamDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.team_detail_activity);
         teamDetail = getIntent().getExtras().getParcelable("TeamDetail");
         teamDetailActivityBinding = DataBindingUtil.setContentView(this, R.layout.team_detail_activity);
@@ -36,4 +39,11 @@ public class TeamDetailActivity extends AppCompatActivity {
             playersListAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        this.finish();
+        return true;
+    }
+
 }

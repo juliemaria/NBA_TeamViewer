@@ -14,9 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.databinding.TeamsActivityBinding;
-import com.example.nbateamviewer.network.model.TeamRepoModel;
+import com.example.nbateamviewer.network.model.TeamRepositoryModel;
 import com.example.nbateamviewer.network.viewmodels.TeamsViewModel;
-import com.example.nbateamviewer.utils.NetworkUtils;
 
 public class TeamsActivity extends AppCompatActivity{
     TeamsActivityBinding teamsActivityBinding;
@@ -26,35 +25,37 @@ public class TeamsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nba);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         teamsActivityBinding = DataBindingUtil.setContentView(this, R.layout.teams_activity);
         teamsViewModel = new ViewModelProvider(this).get(TeamsViewModel.class);
         teamsActivityBinding.setTeamsViewModel(teamsViewModel);
         fetchTeamsList();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchTeamsList();
+    }
+
+
     private void fetchTeamsList() {
-        if (NetworkUtils.hasNetwork(TeamsActivity.this))
-        {
             teamsActivityBinding.progressBar.setVisibility(View.VISIBLE);
             teamsViewModel.init();
-            teamsViewModel.getTeamsMutableLiveData().observe(this, new Observer<TeamRepoModel>() {
+            teamsViewModel.getTeamsMutableLiveData().observe(this, new Observer<TeamRepositoryModel>() {
                         @Override
-                        public void onChanged(TeamRepoModel teamsResponse) {
+                        public void onChanged(TeamRepositoryModel teamsResponse) {
                             teamsActivityBinding.progressBar.setVisibility(View.GONE);
                             if (teamsResponse != null && teamsResponse.getTeamsArrayList()!=null)
                                 setupRecyclerView();
                             else if (teamsResponse.getThrowable()!=null)
                                 Toast.makeText(TeamsActivity.this, teamsResponse.getThrowable().getMessage(),Toast.LENGTH_SHORT).show();
                             else
-                                Toast.makeText(TeamsActivity.this, teamsResponse.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TeamsActivity.this, getResources().getString(R.string.no_internet_message),Toast.LENGTH_SHORT).show();
                         }
                     }
             );
-        }
-        else {
-            Toast.makeText(TeamsActivity.this, R.string.no_internet_message,Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void setupRecyclerView() {
