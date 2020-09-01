@@ -9,7 +9,6 @@ import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -51,9 +50,6 @@ public class TeamsActivityTest {
                         isDisplayed()));
         overflowMenuButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -70,9 +66,6 @@ public class TeamsActivityTest {
                         isDisplayed()));
         appCompatTextView.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -105,10 +98,7 @@ public class TeamsActivityTest {
                         isDisplayed()));
         appCompatTextView2.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+       try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();

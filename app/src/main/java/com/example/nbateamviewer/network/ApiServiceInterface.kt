@@ -1,8 +1,6 @@
 package com.example.nbateamviewer.network
 
 import android.content.Context
-import com.example.nbateamviewer.Constants
-import com.example.nbateamviewer.NbaApplication
 import com.example.nbateamviewer.network.model.Teams
 import com.example.nbateamviewer.utils.NetworkUtils
 import okhttp3.Cache
@@ -11,7 +9,6 @@ import retrofit2.Call
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import kotlin.collections.ArrayList
 
 interface ApiServiceInterface {
 

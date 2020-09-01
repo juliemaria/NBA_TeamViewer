@@ -11,7 +11,6 @@ import com.example.nbateamviewer.network.model.TeamRepositoryModel;
 import com.example.nbateamviewer.network.model.Teams;
 import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 

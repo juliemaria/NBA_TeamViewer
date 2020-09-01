@@ -25,7 +25,7 @@ public class TeamsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nba);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_launcher);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         teamsActivityBinding = DataBindingUtil.setContentView(this, R.layout.teams_activity);
         teamsViewModel = new ViewModelProvider(this).get(TeamsViewModel.class);
