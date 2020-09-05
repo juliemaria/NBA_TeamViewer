@@ -18,4 +18,5 @@
     <string name="win_asc" translatable="false">WinsAsc</string>
     <string name="win_desc" translatable="false">WinsDesc</string>
     <string name="no_internet_message">No internet connection. Make sure Wifi or cellular data is turned on, then try again</string>
+    <string name="no_items_found">No items found</string>
 </resources>

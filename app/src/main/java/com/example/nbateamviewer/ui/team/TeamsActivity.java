@@ -75,33 +75,44 @@ public class TeamsActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.sort_by_alphabetical_order_asc:
-                teamsViewModel.sortTeamList(getString(R.string.team_name_asc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.sort_by_alphabetical_order_desc:
-                teamsViewModel.sortTeamList(getString(R.string.team_name_desc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.sort_by_losses_asc:
-                teamsViewModel.sortTeamList(getString(R.string.loss_asc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.sort_by_losses_desc:
-                teamsViewModel.sortTeamList(getString(R.string.loss_desc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.sort_by_wins_asc:
-                teamsViewModel.sortTeamList(getString(R.string.win_asc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.sort_by_wins_desc:
-                teamsViewModel.sortTeamList(getString(R.string.win_desc));
-                teamsAdapter.notifyDataSetChanged();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(teamsViewModel.getTeamsMutableLiveData()!=null &&
+                teamsViewModel.getTeamsMutableLiveData().getValue()!=null &&
+                teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList()!=null &&
+                !teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().isEmpty() ) {
+
+            switch (item.getItemId()) {
+                case R.id.sort_by_alphabetical_order_asc:
+                    teamsViewModel.sortTeamList(getString(R.string.team_name_asc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                case R.id.sort_by_alphabetical_order_desc:
+                    teamsViewModel.sortTeamList(getString(R.string.team_name_desc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                case R.id.sort_by_losses_asc:
+                    teamsViewModel.sortTeamList(getString(R.string.loss_asc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                case R.id.sort_by_losses_desc:
+                    teamsViewModel.sortTeamList(getString(R.string.loss_desc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                case R.id.sort_by_wins_asc:
+                    teamsViewModel.sortTeamList(getString(R.string.win_asc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                case R.id.sort_by_wins_desc:
+                    teamsViewModel.sortTeamList(getString(R.string.win_desc));
+                    teamsAdapter.notifyDataSetChanged();
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }
+        else
+        {
+            Toast.makeText(TeamsActivity.this, R.string.no_items_found,Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 }

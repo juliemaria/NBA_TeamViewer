@@ -19,7 +19,7 @@ public class TeamsRepository {
     final MutableLiveData<TeamRepositoryModel> teamsList = new MutableLiveData<>();
     private ApiServiceInterface apiServiceInterface;
 
-    public TeamsRepository() {
+    private TeamsRepository() {
     }
         public static TeamsRepository getInstance(String baseUrl, Context context){
             if (teamsRepository == null){
@@ -28,7 +28,7 @@ public class TeamsRepository {
             return teamsRepository;
         }
 
-    public TeamsRepository(String baseUrl, Context context){
+    private TeamsRepository(String baseUrl, Context context){
         apiServiceInterface = ApiServiceInterface.Factory.create(baseUrl, context);
     }
 
