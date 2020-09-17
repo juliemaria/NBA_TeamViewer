@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.ui.teamdetail;
+package com.example.nbateamviewer.view.teamdetail;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.databinding.PlayerListItemBinding;
-import com.example.nbateamviewer.network.model.Players;
+import com.example.nbateamviewer.model.Players;
 
 import java.util.ArrayList;
 

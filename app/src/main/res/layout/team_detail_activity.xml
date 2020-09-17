@@ -6,11 +6,11 @@
 
         <variable
             name="team"
-            type="com.example.nbateamviewer.network.model.Teams" />
+            type="com.example.nbateamviewer.model.Teams" />
 
         <variable
             name="playersListAdapter"
-            type="com.example.nbateamviewer.ui.teamdetail.PlayersListAdapter" />
+            type="com.example.nbateamviewer.view.teamdetail.PlayersListAdapter" />
     </data>
 
     <ScrollView

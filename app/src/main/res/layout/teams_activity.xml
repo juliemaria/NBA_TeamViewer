@@ -7,10 +7,10 @@
 <data>
 <variable
     name="teamsViewModel"
-    type="com.example.nbateamviewer.network.viewmodels.TeamsViewModel"/>
+    type="com.example.nbateamviewer.viewmodels.TeamsViewModel"/>
 <variable
     name="teamsAdapter"
-    type="com.example.nbateamviewer.ui.team.TeamsListAdapter"/>
+    type="com.example.nbateamviewer.view.team.TeamsListAdapter"/>
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.nbateamviewer.ui.team.TeamsActivity;
+import com.example.nbateamviewer.view.team.TeamsActivity;
 
 public class SplashActivity extends Activity {
 

@@ -7,10 +7,10 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.nbateamviewer.network.viewmodels.TeamsViewModel"/>
+            type="com.example.nbateamviewer.viewmodels.TeamsViewModel"/>
         <variable
             name="team"
-            type="com.example.nbateamviewer.network.model.Teams"/>
+            type="com.example.nbateamviewer.model.Teams"/>
 
     </data>
 <androidx.cardview.widget.CardView

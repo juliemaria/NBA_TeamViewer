@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.network.model
+package com.example.nbateamviewer.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

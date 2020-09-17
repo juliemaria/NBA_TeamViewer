@@ -3,13 +3,15 @@ package com.example.nbateamviewer.network.data;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nbateamviewer.network.model.Players;
-import com.example.nbateamviewer.network.model.TeamRepositoryModel;
-import com.example.nbateamviewer.network.model.Teams;
+import com.example.nbateamviewer.model.Players;
+import com.example.nbateamviewer.model.TeamRepositoryModel;
+import com.example.nbateamviewer.model.Teams;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 
@@ -21,28 +23,9 @@ public class TeamRepositoryTest {
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
-    @Test
-    public void testSuccessfulTeamsResponse() {
-        MutableLiveData<TeamRepositoryModel> mockInput = new MutableLiveData<>();
-        TeamRepositoryModel teamRepositoryModel = new TeamRepositoryModel(fetchTeams());
-        mockInput.setValue(teamRepositoryModel);
-
-        TeamsRepository repo = new MockTeamRepository(mockInput);
-        MutableLiveData<TeamRepositoryModel> mockResult = repo.getAllTeams();
-        assertEquals(mockInput, mockResult);
-    }
-
-    @Test
-    public void testFailedTeamsResponse() {
-        ArrayList<Teams> mockTeams = fetchTeams();
-
-        MutableLiveData<ArrayList<Teams>> mockInput = new MutableLiveData<>();
-        mockInput.setValue(mockTeams);
-
-        TeamsRepository repo = new FailedMockTeamRepository();
-        MutableLiveData<TeamRepositoryModel> mockResult = repo.getAllTeams();
-        assertNotEquals(mockInput, mockResult);
-        assertEquals(null, mockResult);
+    @Before
+    public void setup(){
+        MockitoAnnotations.initMocks(this);
     }
 
     @NotNull
@@ -55,23 +38,52 @@ public class TeamRepositoryTest {
         return mockTeams;
     }
 
+
+    @Test
+    public void testSuccessfulTeamsResponse() {
+        MutableLiveData<TeamRepositoryModel> mockInput = new MutableLiveData<>();
+        TeamRepositoryModel teamRepositoryModel = new TeamRepositoryModel(fetchTeams());
+        mockInput.setValue(teamRepositoryModel);
+
+        TeamsRepository repo = new MockTeamRepository();
+        MutableLiveData<TeamRepositoryModel> mockResult = repo.getAllTeams();
+        assertEquals(mockInput.getValue().getTeamsArrayList(), mockResult.getValue().getTeamsArrayList());
+    }
+
     class MockTeamRepository extends TeamsRepository {
         MutableLiveData<TeamRepositoryModel> teamData;
 
-        public MockTeamRepository(MutableLiveData<TeamRepositoryModel> mockTeams) {
-            this.teamData = mockTeams;
+        public MockTeamRepository() {
+            super();
         }
 
         @Override
         public MutableLiveData<TeamRepositoryModel> getAllTeams() {
+            teamData = new MutableLiveData<>();
+            TeamRepositoryModel teamRepositoryModel = new TeamRepositoryModel(fetchTeams());
+            teamData.setValue(teamRepositoryModel);
             return teamData;
         }
+    }
+
+
+   @Test
+    public void testFailedTeamsResponse() {
+        ArrayList<Teams> mockTeams = fetchTeams();
+
+        MutableLiveData<ArrayList<Teams>> mockInput = new MutableLiveData<>();
+        mockInput.setValue(mockTeams);
+
+        TeamsRepository repo = new FailedMockTeamRepository();
+        MutableLiveData<TeamRepositoryModel> mockResult = repo.getAllTeams();
+        assertNotEquals(mockInput, mockResult);
+        assertEquals(null, mockResult);
     }
 
     class FailedMockTeamRepository extends TeamsRepository {
 
         public FailedMockTeamRepository() {
-
+            super();
         }
 
         @Override
@@ -79,4 +91,6 @@ public class TeamRepositoryTest {
             return null;
         }
     }
+
+
 }

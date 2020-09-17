@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.ui.team;
+package com.example.nbateamviewer.view.team;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,8 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.databinding.TeamsActivityBinding;
-import com.example.nbateamviewer.network.model.TeamRepositoryModel;
-import com.example.nbateamviewer.network.viewmodels.TeamsViewModel;
+import com.example.nbateamviewer.model.TeamRepositoryModel;
+import com.example.nbateamviewer.viewmodels.TeamsViewModel;
 
 public class TeamsActivity extends AppCompatActivity{
     TeamsActivityBinding teamsActivityBinding;
@@ -30,7 +30,6 @@ public class TeamsActivity extends AppCompatActivity{
         teamsActivityBinding = DataBindingUtil.setContentView(this, R.layout.teams_activity);
         teamsViewModel = new ViewModelProvider(this).get(TeamsViewModel.class);
         teamsActivityBinding.setTeamsViewModel(teamsViewModel);
-        fetchTeamsList();
     }
 
     @Override
@@ -43,7 +42,7 @@ public class TeamsActivity extends AppCompatActivity{
     private void fetchTeamsList() {
             teamsActivityBinding.progressBar.setVisibility(View.VISIBLE);
             teamsViewModel.init();
-            teamsViewModel.getTeamsMutableLiveData().observe(this, new Observer<TeamRepositoryModel>() {
+            teamsViewModel.getTeamsLiveData().observe(this, new Observer<TeamRepositoryModel>() {
                         @Override
                         public void onChanged(TeamRepositoryModel teamsResponse) {
                             teamsActivityBinding.progressBar.setVisibility(View.GONE);
@@ -75,10 +74,10 @@ public class TeamsActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(teamsViewModel.getTeamsMutableLiveData()!=null &&
-                teamsViewModel.getTeamsMutableLiveData().getValue()!=null &&
-                teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList()!=null &&
-                !teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().isEmpty() ) {
+        if(teamsViewModel.getTeamsLiveData()!=null &&
+                teamsViewModel.getTeamsLiveData().getValue()!=null &&
+                teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList()!=null &&
+                !teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().isEmpty() ) {
 
             switch (item.getItemId()) {
                 case R.id.sort_by_alphabetical_order_asc:

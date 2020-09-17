@@ -1,15 +1,13 @@
-package com.example.nbateamviewer.network.viewmodels;
+package com.example.nbateamviewer.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nbateamviewer.Constants;
-import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.data.TeamsRepository;
-import com.example.nbateamviewer.network.model.TeamRepositoryModel;
-import com.example.nbateamviewer.network.model.Teams;
-import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
+import com.example.nbateamviewer.model.TeamRepositoryModel;
+import com.example.nbateamviewer.model.Teams;
+import com.example.nbateamviewer.view.interfaces.TeamDetailNavigator;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,7 +18,7 @@ public class TeamsViewModel extends ViewModel {
     private TeamsRepository teamsRepository;
     private TeamDetailNavigator teamDetailNavigator;
 
-    public LiveData<TeamRepositoryModel> getTeamsMutableLiveData() {
+    public LiveData<TeamRepositoryModel> getTeamsLiveData() {
         return teamsMutableLiveData;
     }
 
@@ -29,11 +27,14 @@ public class TeamsViewModel extends ViewModel {
     }
 
    public void init(){
-        if (teamsMutableLiveData != null){
+        if (teamsMutableLiveData != null &&
+                teamsMutableLiveData.getValue()!=null &&
+                teamsMutableLiveData.getValue().getTeamsArrayList()!=null &&
+                !teamsMutableLiveData.getValue().getTeamsArrayList().isEmpty()){
             return;
         }
-        teamsRepository = TeamsRepository.getInstance(Constants.BASE_URL, NbaApplication.getAppContext());
-        teamsMutableLiveData = teamsRepository.getAllTeams();
+        teamsRepository = TeamsRepository.getInstance();
+        setTeamsMutableLiveData(teamsRepository.getAllTeams());
     }
 
     public void setTeamDetailNavigator(TeamDetailNavigator teamDetailNavigator) {

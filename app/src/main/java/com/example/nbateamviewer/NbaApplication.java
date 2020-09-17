@@ -3,6 +3,8 @@ package com.example.nbateamviewer;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.nbateamviewer.network.ApiServiceInterface;
+
 public class NbaApplication extends Application {
     private static Context context;
 
@@ -12,6 +14,6 @@ public class NbaApplication extends Application {
     }
 
     public static Context getAppContext() {
-        return NbaApplication.context;
+        return context;
     }
 }

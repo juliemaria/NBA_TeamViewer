@@ -1,11 +1,11 @@
-package com.example.nbateamviewer.network.viewmodels;
+package com.example.nbateamviewer.viewmodels;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nbateamviewer.network.model.Players;
-import com.example.nbateamviewer.network.model.TeamRepositoryModel;
-import com.example.nbateamviewer.network.model.Teams;
+import com.example.nbateamviewer.model.Players;
+import com.example.nbateamviewer.model.TeamRepositoryModel;
+import com.example.nbateamviewer.model.Teams;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
@@ -36,22 +36,22 @@ public class TeamsViewModelTest {
     public void testTeamsSorting() {
 
         teamsViewModel.sortTeamList("TeamNameDesc");
-        assertEquals("Team X", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("Team X", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
         teamsViewModel.sortTeamList("TeamNameAsc");
-        assertEquals("Another Team", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("Another Team", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
         teamsViewModel.sortTeamList("LossDesc");
-        assertEquals("New Team", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("New Team", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
         teamsViewModel.sortTeamList("LossAsc");
-        assertEquals("Another Team", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("Another Team", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
         teamsViewModel.sortTeamList("WinsAsc");
-        assertEquals("New Team", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("New Team", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
         teamsViewModel.sortTeamList("WinsDesc");
-        assertEquals("Team X", teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
+        assertEquals("Team X", teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList().get(0).getFull_name());
 
     }
 

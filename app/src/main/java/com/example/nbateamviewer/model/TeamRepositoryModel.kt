@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.network.model
+package com.example.nbateamviewer.model
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.ui.team;
+package com.example.nbateamviewer.view.team;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.databinding.TeamsListItemBinding;
-import com.example.nbateamviewer.network.model.Teams;
-import com.example.nbateamviewer.network.viewmodels.TeamsViewModel;
-import com.example.nbateamviewer.ui.interfaces.TeamDetailNavigator;
-import com.example.nbateamviewer.ui.teamdetail.TeamDetailActivity;
+import com.example.nbateamviewer.model.Teams;
+import com.example.nbateamviewer.viewmodels.TeamsViewModel;
+import com.example.nbateamviewer.view.interfaces.TeamDetailNavigator;
+import com.example.nbateamviewer.view.teamdetail.TeamDetailActivity;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class TeamsListAdapter extends RecyclerView.Adapter<TeamsListAdapter.Team
     public TeamsListAdapter(Activity context,TeamsViewModel tViewModel) {
         this.context = context;
         this.teamsViewModel = tViewModel;
-        this.teamsArrayList = teamsViewModel.getTeamsMutableLiveData().getValue().getTeamsArrayList();
+        this.teamsArrayList = teamsViewModel.getTeamsLiveData().getValue().getTeamsArrayList();
     }
 
 

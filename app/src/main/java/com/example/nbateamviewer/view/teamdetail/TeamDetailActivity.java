@@ -1,4 +1,4 @@
-package com.example.nbateamviewer.ui.teamdetail;
+package com.example.nbateamviewer.view.teamdetail;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.databinding.TeamDetailActivityBinding;
-import com.example.nbateamviewer.network.model.Teams;
+import com.example.nbateamviewer.model.Teams;
 
 public class TeamDetailActivity extends AppCompatActivity {
     Teams teamDetail;
