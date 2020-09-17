@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:name=".NbaApplication"
         >
-        <activity android:name=".SplashActivity">
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

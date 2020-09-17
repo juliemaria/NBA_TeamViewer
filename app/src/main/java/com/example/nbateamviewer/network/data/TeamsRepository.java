@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nbateamviewer.Constants;
+import com.example.nbateamviewer.utils.Constants;
 import com.example.nbateamviewer.NbaApplication;
 import com.example.nbateamviewer.network.ApiServiceInterface;
 import com.example.nbateamviewer.model.TeamRepositoryModel;

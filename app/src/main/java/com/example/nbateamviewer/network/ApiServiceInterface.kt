@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ApiServiceInterface {
 
-    @GET("master/input.json")
+    @GET("nbaData")
     fun getTeamsList(): Call<ArrayList<Teams>>
 }

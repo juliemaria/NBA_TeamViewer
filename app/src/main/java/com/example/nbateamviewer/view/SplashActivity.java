@@ -1,10 +1,11 @@
-package com.example.nbateamviewer;
+package com.example.nbateamviewer.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.nbateamviewer.R;
 import com.example.nbateamviewer.view.team.TeamsActivity;
 
 public class SplashActivity extends Activity {
